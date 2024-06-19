@@ -1,0 +1,286 @@
+/* Import Bootstrap styles */
+@import "~bootstrap/scss/bootstrap";
+
+/* Customize Bootstrap variables */
+$primary: #4caf50; // Green color for primary elements
+$secondary: #ffffff; // White color for text
+$text-color: #388e3c; // Darker green color for hover and active states
+$success: #4caf50; // Same green color for success elements
+
+/* Global styles */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: $secondary;
+  /* White background */
+  color: $primary;
+  /* Green text */
+}
+
+/* Navbar adjustments */
+.navbar {
+  background-color: $secondary;
+  /* White navbar background */
+  padding: 0.5rem 1rem;
+
+  .navbar-brand {
+    margin-right: auto;
+    /* Pushes logo to the right */
+    display: flex;
+    align-items: center;
+
+    .logo-img {
+      max-width: 200px;
+      /* Increased logo size */
+      height: auto;
+      margin-right: 1rem;
+      /* Adjusted margin */
+    }
+  }
+
+  .navbar-nav {
+    margin-left: auto;
+    /* Centers the navigation items horizontally */
+    display: flex;
+    align-items: center;
+
+    .nav-link {
+      color: $primary;
+      /* Green text */
+      font-size: 1.5rem;
+      /* Larger font size */
+      font-weight: 500;
+      /* Semi-bold font */
+      padding: 0.8rem 1.2rem;
+      /* More padding for a stylish look */
+      text-decoration: none;
+      transition: color 0.3s ease;
+      margin-right: 1.5rem;
+
+      &:hover {
+        color: $text-color;
+        /* Darker green on hover */
+      }
+
+      &.active {
+        font-weight: bold;
+        color: $primary;
+        /* Green text for active link */
+      }
+
+      &.custom-dropdown::after {
+        display: none;
+        /* Hide the dropdown arrow */
+      }
+    }
+
+    .dropdown-menu {
+      background-color: $primary;
+
+      .dropdown-item {
+        color: $secondary;
+        /* White dropdown text */
+        padding: 0.5rem 1rem;
+        font-size: 1.2rem;
+        /* Slightly larger font size */
+
+        &:hover {
+          background-color: $primary;
+          /* Darken green on hover */
+          color: $secondary;
+          /* White dropdown text on hover */
+          text-decoration: underline;
+          /* Underline on hover */
+        }
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .navbar-nav {
+      .nav-link {
+        padding: 0.5rem 1rem;
+      }
+    }
+  }
+}
+
+/* Button styles */
+.button-primary {
+  background-color: $success;
+  /* Green button background */
+  border-color: $success;
+  color: $secondary;
+  /* White button text */
+  font-size: 1.5rem;
+  /* Larger font size */
+  font-weight: 500;
+  padding: 0.8rem 1.2rem;
+  /* More padding for a bigger button */
+  margin-right: 1rem;
+
+  &:hover,
+  &:focus,
+  &:active,
+  &.active {
+    background-color: darken($success, 10%);
+    /* Darken green on hover */
+    border-color: darken($success, 10%);
+    color: $secondary;
+    /* White text on hover */
+  }
+}
+
+/* Section styles */
+.section {
+  padding: 100px 0;
+  background-size: cover;
+  background-position: center;
+  color: #ffffff;
+
+  .section-content {
+    max-width: 80%;
+    margin-right: auto;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+
+    h2 {
+      font-size: 36px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+
+    ul {
+      list-style-type: disc;
+      margin-left: 20px;
+      margin-bottom: 30px;
+
+      li {
+        font-size: 16px;
+        line-height: 1.6;
+      }
+    }
+
+    .button-primary {
+      background-color: #4caf50;
+      /* Green button background */
+      border-color: #4caf50;
+      color: #ffffff;
+      /* White button text */
+      font-size: 1.5rem;
+      /* Larger font size */
+      font-weight: 500;
+      padding: 10px 20px;
+      /* More padding for a bigger button */
+      margin-top: 20px;
+
+      &:hover,
+      &:focus,
+      &:active,
+      &.active {
+        background-color: darken(#4caf50, 10%);
+        /* Darken green on hover */
+        border-color: darken(#4caf50, 10%);
+        color: #ffffff;
+        /* White text on hover */
+      }
+    }
+  }
+
+  img {
+    max-width: 100%;
+    border-radius: 8px;
+  }
+}
+.footer {
+  background-color: #333;
+  /* Dark background color */
+  color: #fff;
+  /* White text color */
+  padding: 20px 0;
+  /* Reduced padding for better spacing */
+  font-size: 14px;
+  /* Font size for the footer */
+  text-align: center;
+  /* Center-align text */
+  flex: 1;
+  /* Make the footer expand to take remaining space */
+  display: flex;
+  /* Enable flexbox layout */
+  flex-direction: column;
+  /* Layout footer content vertically */
+  justify-content: center;
+  /* Center content vertically */
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  /* Allow content to wrap on smaller screens */
+}
+
+.footer-section {
+  margin-bottom: 10px;
+  /* Bottom margin for each section */
+  flex: 1;
+  /* Equal flex distribution for sections */
+}
+
+.footer-logo {
+  max-width: 150px;
+  /* Adjusted logo size */
+  margin-bottom: 10px;
+  /* Reduced spacing below the logo */
+}
+
+.social-icons {
+  margin-top: 10px;
+  /* Top margin for social icons */
+}
+
+.social-icon {
+  display: inline-block;
+  margin-right: 15px;
+  /* Spacing between social icons */
+  transition: transform 0.2s ease-in-out;
+  /* Smooth hover effect */
+}
+
+.social-icon img {
+  width: 30px;
+  /* Adjusted social icon size */
+  height: auto;
+}
+
+.social-icon:hover {
+  transform: translateY(-3px);
+  /* Hover effect */
+}
+
+.footer-text {
+  margin-top: 10px;
+  /* Top margin for footer text */
+  font-size: 12px;
+  /* Smaller font size for footer text */
+}
+
+.footer-address {
+  line-height: 1.6;
+  /* Adjusted line height for address */
+}
+
+.footer-address-line {
+  display: block;
+  margin-top: 5px;
+  /* Spacing between address lines */
+}
