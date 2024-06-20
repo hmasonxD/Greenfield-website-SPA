@@ -38,7 +38,7 @@ const Section: React.FC<SectionProps> = ({
     <Box
       sx={{
         position: "relative",
-        minHeight: "100vh", // section takes full viewport height for all devices
+        minHeight: "100vh",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -113,7 +113,7 @@ const Section: React.FC<SectionProps> = ({
             {image && (
               <img
                 src={image}
-                alt="Section Image"
+                alt={title}
                 style={{ maxWidth: "100%", borderRadius: 8 }}
               />
             )}

@@ -1,6 +1,6 @@
 import React from "react";
 import Section from "../components/Section";
-import clientImage from "../assets/clients.jpg";
+import clientImage from "../assets/client.jpg";
 import { Container } from "@mui/material";
 
 const ClientsPage: React.FC = () => {
