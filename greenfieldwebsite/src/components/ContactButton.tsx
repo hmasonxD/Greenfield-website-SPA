@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Button, Modal } from "react-bootstrap";
+import { Button, Dialog, DialogTitle } from "@mui/material";
 import ContactForm from "./ContactForm";
+import ContactMailIcon from "@mui/icons-material/ContactMail";
 
 const ContactButton: React.FC = () => {
   const [showContactForm, setShowContactForm] = useState(false);
@@ -10,18 +11,19 @@ const ContactButton: React.FC = () => {
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={handleShow}
+        startIcon={<ContactMailIcon />}
+      >
         Contact Us
       </Button>
 
-      <Modal show={showContactForm} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Contact Us</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <ContactForm handleClose={handleClose} />
-        </Modal.Body>
-      </Modal>
+      <Dialog open={showContactForm} onClose={handleClose}>
+        <DialogTitle>Contact Us</DialogTitle>
+        <ContactForm handleClose={handleClose} />
+      </Dialog>
     </>
   );
 };

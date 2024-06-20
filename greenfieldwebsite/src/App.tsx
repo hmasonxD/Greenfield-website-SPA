@@ -1,28 +1,47 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import NavigationBar from "./components/Navbar";
+import React, { useState } from "react";
+import { Routes, Route } from "react-router-dom";
+import NavigationBar from "./components/NavigationBar";
+import Footer from "./components/Footer";
 import Home from "./pages/Home";
-import Services from "./pages/Services";
 import About from "./pages/About";
 import Careers from "./pages/Careers";
-import Contact from "./pages/Contact";
-import Footer from "./components/Footer";
-import "./index.scss";
-import "bootstrap/dist/css/bootstrap.min.css";
+import Services from "./pages/Services";
+import Clients from "./pages/Clients";
+import Project from "./pages/Project";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 const App: React.FC = () => {
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  const toggleTheme = () => {
+    setIsDarkMode((prevMode) => !prevMode);
+  };
+
+  const theme = createTheme({
+    palette: {
+      mode: isDarkMode ? "dark" : "light",
+      primary: {
+        main: "#4caf50",
+      },
+      secondary: {
+        main: "#FFF",
+      },
+    },
+  });
+
   return (
-    <Router>
-      <NavigationBar />
+    <ThemeProvider theme={theme}>
+      <NavigationBar toggleTheme={toggleTheme} />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/services" element={<Services />} />
         <Route path="/about" element={<About />} />
         <Route path="/careers" element={<Careers />} />
-        <Route path="/contact" element={<Contact />} />
+        <Route path="/services" element={<Services />} />
+        <Route path="/clients" element={<Clients />} />
+        <Route path="/project" element={<Project />} />
       </Routes>
       <Footer />
-    </Router>
+    </ThemeProvider>
   );
 };
 

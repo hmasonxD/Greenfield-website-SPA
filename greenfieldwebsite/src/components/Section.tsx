@@ -1,8 +1,13 @@
 import React from "react";
-import { Container, Row, Col, Button } from "react-bootstrap";
+import {
+  Box,
+  Container,
+  Grid,
+  Typography,
+  Button,
+  useTheme,
+} from "@mui/material";
 import { Link } from "react-router-dom";
-import ContactButton from "./ContactButton";
-import "../index.scss";
 
 interface ButtonConfig {
   text: string;
@@ -27,62 +32,95 @@ const Section: React.FC<SectionProps> = ({
   image,
   buttons,
 }) => {
+  const theme = useTheme();
+
   return (
-    <div
-      className="section"
-      style={{ backgroundImage: `url(${backgroundImage})` }}
+    <Box
+      sx={{
+        position: "relative",
+        minHeight: "100vh", // section takes full viewport height for all devices
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        flexDirection: "column",
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        textAlign: "center",
+        color: theme.palette.mode === "dark" ? "#fff" : "#333",
+      }}
     >
-      <Container>
-        <Row className="align-items-center">
-          <Col lg={6}>
-            <div className="section-content">
-              <h2>{title}</h2>
-              <p>{subtitle}</p>
-              {additionalContent && (
-                <ul>
-                  {additionalContent.map((item, index) => (
-                    <li key={index}>{item}</li>
-                  ))}
-                </ul>
-              )}
-              {buttons && buttons.length > 0 && (
-                <div className="button-container">
-                  {buttons.map((button, index) => (
-                    <React.Fragment key={index}>
-                      {button.action === "contact" && <ContactButton />}
-                      {button.action === "about" && (
-                        <Link to="/about">
-                          <Button
-                            variant="success"
-                            className="button-primary btn-lg"
-                          >
-                            {button.text}
-                          </Button>
-                        </Link>
-                      )}
-                      {button.action === "custom" && (
-                        <Button
-                          variant="primary"
-                          className="custom-button btn-lg"
-                          onClick={button.onClick}
-                        >
-                          {button.text}
-                        </Button>
-                      )}
-                    </React.Fragment>
-                  ))}
-                </div>
-              )}
-            </div>
-          </Col>
-          <Col lg={6}>
-            {image && (
-              <img src={image} alt="Section Image" className="img-fluid" />
+      <Container maxWidth="lg">
+        <Grid container spacing={4} alignItems="center">
+          <Grid item xs={12} md={6}>
+            <Typography variant="h3" gutterBottom>
+              {title}
+            </Typography>
+            <Typography variant="body1" paragraph>
+              {subtitle}
+            </Typography>
+            {additionalContent && (
+              <Box sx={{ textAlign: "left" }}>
+                {additionalContent.map((item, index) => (
+                  <Typography key={index} variant="body2" paragraph>
+                    {item}
+                  </Typography>
+                ))}
+              </Box>
             )}
-          </Col>
-        </Row>
+            {buttons && buttons.length > 0 && (
+              <Box sx={{ mt: 4 }}>
+                {buttons.map((button, index) => (
+                  <React.Fragment key={index}>
+                    {button.action === "contact" && (
+                      <Button
+                        component={Link}
+                        to="/contact"
+                        variant="contained"
+                        color="primary"
+                        sx={{ mr: 2 }}
+                      >
+                        {button.text}
+                      </Button>
+                    )}
+                    {button.action === "about" && (
+                      <Button
+                        component={Link}
+                        to="/about"
+                        variant="contained"
+                        color="primary"
+                        sx={{ mr: 2 }}
+                      >
+                        {button.text}
+                      </Button>
+                    )}
+                    {button.action === "custom" && (
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={button.onClick}
+                        sx={{ mr: 2 }}
+                      >
+                        {button.text}
+                      </Button>
+                    )}
+                  </React.Fragment>
+                ))}
+              </Box>
+            )}
+          </Grid>
+          <Grid item xs={12} md={6}>
+            {image && (
+              <img
+                src={image}
+                alt="Section Image"
+                style={{ maxWidth: "100%", borderRadius: 8 }}
+              />
+            )}
+          </Grid>
+        </Grid>
       </Container>
-    </div>
+    </Box>
   );
 };
 

@@ -13,66 +13,48 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background-color: $secondary;
-  /* White background */
-  color: $primary;
-  /* Green text */
+  background-color: $secondary; // White background
+  color: $primary; // Green text
 }
 
 /* Navbar adjustments */
 .navbar {
-  background-color: $secondary;
-  /* White navbar background */
+  background-color: $secondary; // White navbar background
   padding: 0.5rem 1rem;
 
   .navbar-brand {
     margin-right: auto;
-    /* Pushes logo to the right */
     display: flex;
     align-items: center;
 
     .logo-img {
       max-width: 200px;
-      /* Increased logo size */
       height: auto;
       margin-right: 1rem;
-      /* Adjusted margin */
     }
   }
 
   .navbar-nav {
     margin-left: auto;
-    /* Centers the navigation items horizontally */
     display: flex;
     align-items: center;
 
     .nav-link {
-      color: $primary;
-      /* Green text */
+      color: $primary; // Green text
       font-size: 1.5rem;
-      /* Larger font size */
       font-weight: 500;
-      /* Semi-bold font */
       padding: 0.8rem 1.2rem;
-      /* More padding for a stylish look */
       text-decoration: none;
       transition: color 0.3s ease;
       margin-right: 1.5rem;
 
       &:hover {
-        color: $text-color;
-        /* Darker green on hover */
+        color: $text-color; // Darker green on hover
       }
 
       &.active {
         font-weight: bold;
-        color: $primary;
-        /* Green text for active link */
-      }
-
-      &.custom-dropdown::after {
-        display: none;
-        /* Hide the dropdown arrow */
+        color: $primary; // Green text for active link
       }
     }
 
@@ -80,19 +62,14 @@ body {
       background-color: $primary;
 
       .dropdown-item {
-        color: $secondary;
-        /* White dropdown text */
+        color: $secondary; // White dropdown text
         padding: 0.5rem 1rem;
         font-size: 1.2rem;
-        /* Slightly larger font size */
 
         &:hover {
-          background-color: $primary;
-          /* Darken green on hover */
-          color: $secondary;
-          /* White dropdown text on hover */
-          text-decoration: underline;
-          /* Underline on hover */
+          background-color: $primary; // Darken green on hover
+          color: $secondary; // White dropdown text on hover
+          text-decoration: underline; // Underline on hover
         }
       }
     }
@@ -109,27 +86,21 @@ body {
 
 /* Button styles */
 .button-primary {
-  background-color: $success;
-  /* Green button background */
+  background-color: $success; // Green button background
   border-color: $success;
-  color: $secondary;
-  /* White button text */
-  font-size: 1.5rem;
-  /* Larger font size */
+  color: $secondary; // White button text
+  font-size: 1.5rem; // Larger font size
   font-weight: 500;
-  padding: 0.8rem 1.2rem;
-  /* More padding for a bigger button */
+  padding: 0.8rem 1.2rem; // More padding for a bigger button
   margin-right: 1rem;
 
   &:hover,
   &:focus,
   &:active,
   &.active {
-    background-color: darken($success, 10%);
-    /* Darken green on hover */
+    background-color: darken($success, 10%); // Darken green on hover
     border-color: darken($success, 10%);
-    color: $secondary;
-    /* White text on hover */
+    color: $secondary; // White text on hover
   }
 }
 
@@ -170,27 +141,21 @@ body {
     }
 
     .button-primary {
-      background-color: #4caf50;
-      /* Green button background */
+      background-color: #4caf50; // Green button background
       border-color: #4caf50;
-      color: #ffffff;
-      /* White button text */
-      font-size: 1.5rem;
-      /* Larger font size */
+      color: #ffffff; // White button text
+      font-size: 1.5rem; // Larger font size
       font-weight: 500;
-      padding: 10px 20px;
-      /* More padding for a bigger button */
+      padding: 10px 20px; // More padding for a bigger button
       margin-top: 20px;
 
       &:hover,
       &:focus,
       &:active,
       &.active {
-        background-color: darken(#4caf50, 10%);
-        /* Darken green on hover */
+        background-color: darken(#4caf50, 10%); // Darken green on hover
         border-color: darken(#4caf50, 10%);
-        color: #ffffff;
-        /* White text on hover */
+        color: #ffffff; // White text on hover
       }
     }
   }
@@ -199,88 +164,4 @@ body {
     max-width: 100%;
     border-radius: 8px;
   }
-}
-.footer {
-  background-color: #333;
-  /* Dark background color */
-  color: #fff;
-  /* White text color */
-  padding: 20px 0;
-  /* Reduced padding for better spacing */
-  font-size: 14px;
-  /* Font size for the footer */
-  text-align: center;
-  /* Center-align text */
-  flex: 1;
-  /* Make the footer expand to take remaining space */
-  display: flex;
-  /* Enable flexbox layout */
-  flex-direction: column;
-  /* Layout footer content vertically */
-  justify-content: center;
-  /* Center content vertically */
-}
-
-.footer-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  /* Allow content to wrap on smaller screens */
-}
-
-.footer-section {
-  margin-bottom: 10px;
-  /* Bottom margin for each section */
-  flex: 1;
-  /* Equal flex distribution for sections */
-}
-
-.footer-logo {
-  max-width: 150px;
-  /* Adjusted logo size */
-  margin-bottom: 10px;
-  /* Reduced spacing below the logo */
-}
-
-.social-icons {
-  margin-top: 10px;
-  /* Top margin for social icons */
-}
-
-.social-icon {
-  display: inline-block;
-  margin-right: 15px;
-  /* Spacing between social icons */
-  transition: transform 0.2s ease-in-out;
-  /* Smooth hover effect */
-}
-
-.social-icon img {
-  width: 30px;
-  /* Adjusted social icon size */
-  height: auto;
-}
-
-.social-icon:hover {
-  transform: translateY(-3px);
-  /* Hover effect */
-}
-
-.footer-text {
-  margin-top: 10px;
-  /* Top margin for footer text */
-  font-size: 12px;
-  /* Smaller font size for footer text */
-}
-
-.footer-address {
-  line-height: 1.6;
-  /* Adjusted line height for address */
-}
-
-.footer-address-line {
-  display: block;
-  margin-top: 5px;
-  /* Spacing between address lines */
 }
