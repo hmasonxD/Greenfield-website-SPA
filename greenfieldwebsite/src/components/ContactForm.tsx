@@ -12,15 +12,16 @@ const ContactForm: React.FC<ContactFormProps> = ({ handleClose }) => {
 
     emailjs
       .sendForm(
-        "YOUR_SERVICE_ID",
-        "YOUR_TEMPLATE_ID",
+        "GTI email",
+        "template_0t2una8",
         event.currentTarget,
-        "YOUR_USER_ID"
+        "MXCE0iI2QeSouzJac"
       )
       .then(
         (result) => {
           console.log(result.text);
           alert("Message sent successfully!");
+
           handleClose();
         },
         (error) => {
@@ -53,10 +54,10 @@ const ContactForm: React.FC<ContactFormProps> = ({ handleClose }) => {
       </Form.Group>
 
       <div className="d-grid gap-2">
-        <Button variant="primary" type="submit" size="lg">
+        <Button variant="primary" type="submit" size="sm">
           Submit
         </Button>
-        <Button variant="secondary" onClick={handleClose} size="lg">
+        <Button variant="secondary" onClick={handleClose} size="sm">
           Close
         </Button>
       </div>
