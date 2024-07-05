@@ -1,38 +1,83 @@
 import React from "react";
-import Section from "../components/Section";
-import projectImage from "../assets/service.jpg";
+import EachFuc from "../components/Eachpage";
+import Service1 from "../assets/client.jpg";
+import Service2 from "../assets/goalsimg.jpg";
+import Page from "../assets/about.jpg";
 import { Container } from "@mui/material";
+import Sponsor from "../components/ourSponsor";
+import ContactSection from "../components/contactpage";
+import ProjectPage from "../components/ProjectPage";
+
 
 const ProjectsPage: React.FC = () => {
   return (
-    <Container>
-      <Section
-        title="Our Projects"
-        subtitle="Explore some of the impactful projects executed by Greenfield International Technologies Inc."
-        image={projectImage}
+    <>
+      <EachFuc
+       Title=" Our Project"
+       image={Service1}
       />
+      <Container>
+      <ProjectPage
+          title="Sample Project Title"
+          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+              reprehenderit in voluptate velit esse cillum dolore eu fugiat
+              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+              sunt in culpa qui officia deserunt mollit anim id est laborum.
+              
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+              reprehenderit in voluptate velit esse cillum dolore eu fugiat
+              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+              sunt in culpa qui officia deserunt mollit anim id est laborum.
+              
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vel turpis ac 
+              magna vestibulum viverra."
+          imageUrl={Page}
+          imagePosition="right"
+          />
 
-      <Section
-        title="Project Highlights"
-        subtitle="Greenfield International Technologies Inc has successfully delivered projects in various sectors including:"
-        additionalContent={[
-          "Telecommunication Infrastructure Development",
-          "Network Expansion and Optimization",
-          "Technology Integration Solutions",
-          "Client-specific Customizations",
-        ]}
-      />
+      <ProjectPage
+          title="Sample Project Title"
+          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+              reprehenderit in voluptate velit esse cillum dolore eu fugiat
+              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+              sunt in culpa qui officia deserunt mollit anim id est laborum.
+              
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+              reprehenderit in voluptate velit esse cillum dolore eu fugiat
+              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+              sunt in culpa qui officia deserunt mollit anim id est laborum.
+              
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vel turpis ac 
+              magna vestibulum viverra."
+          imageUrl={Service2}
+          imagePosition="left"
+          />
 
-      <Section
-        title="Success Stories"
-        subtitle="Read about our success stories and how we helped our clients achieve their business objectives."
-        additionalContent={[
-          "Case studies and testimonials from satisfied clients.",
-          "Learn how our solutions have made a difference.",
-          "Client success stories that showcase our expertise and commitment.",
-        ]}
-      />
-    </Container>
+      </Container>
+        <Sponsor />
+        <ContactSection />
+    
+     </>
   );
 };
 

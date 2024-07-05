@@ -1,46 +1,33 @@
 import React from "react";
-import Section from "../components/Section";
-import backgroundImage from "../assets/test.jpg";
-import { Container } from "@mui/material";
+import EachFuc from "../components/Eachpage";
+import CareerPage from '../components/Career';
+import Page from "../assets/goalsimg.jpg";
+import Sponsor from "../components/ourSponsor";
+const jobs = [
+    {
+        title: 'Frontend Developer',
+        description: 'Join our team as a frontend developer and work on exciting projects.',
+    },
+    {
+        title: 'UX Designer',
+        description: 'We are looking for a talented UX designer to improve our user experience.',
+    },
+    // Add more job objects as needed
+];
+
 
 const CareersPage: React.FC = () => {
   return (
-    <Container>
-      <Section
-        title="Join Our Team"
-        subtitle="Discover exciting career opportunities at Greenfield International Technologies Inc."
-        backgroundImage={backgroundImage}
-        buttons={[
-          {
-            text: "Apply Now",
-            action: "custom",
-            onClick: () => alert("Redirect to careers page"),
-          },
-        ]}
-      />
-
-      <Section
-        title="Why Work With Us?"
-        subtitle="At Greenfield International Technologies Inc, we offer:"
-        additionalContent={[
-          "Professional Growth: Opportunities to develop skills and advance your career.",
-          "Innovative Environment: Work with cutting-edge technologies and solutions.",
-          "Team Collaboration: Collaborative work culture that fosters creativity and teamwork.",
-          "Rewarding Experience: Competitive compensation and benefits package.",
-        ]}
-      />
-
-      <Section
-        title="Current Openings"
-        subtitle="Explore our current job openings and join our dynamic team."
-        additionalContent={[
-          "We are constantly seeking talented individuals to join our team.",
-          "Check our careers page regularly for updated job postings.",
-          "Apply today and start a rewarding career at Greenfield International Technologies Inc.",
-        ]}
-        buttons={[{ text: "View Openings", action: "about" }]}
-      />
-    </Container>
+    <>
+      <EachFuc
+      Title=" Career "
+      image={Page}
+     />
+      <CareerPage jobs={jobs} />
+      
+      <Sponsor />
+    </>
+  
   );
 };
 

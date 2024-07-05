@@ -1,42 +1,68 @@
-import React from "react";
-import { Link as RouterLink } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import {
   AppBar,
   Toolbar,
   IconButton,
   Typography,
-  Drawer,
-  List,
-  ListItem,
-  ListItemText,
-  Modal,
-  Button,
-  ListItemIcon,
-  Switch,
+  Box,
   useMediaQuery,
-  useTheme,
+  Drawer,
+  Button,
+  Menu,
+  MenuItem,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import HomeIcon from "@mui/icons-material/Home";
-import InfoIcon from "@mui/icons-material/Info";
-import WorkIcon from "@mui/icons-material/Work";
-import BuildIcon from "@mui/icons-material/Build";
-import BusinessIcon from "@mui/icons-material/Business";
-import ContactMailIcon from "@mui/icons-material/ContactMail";
-import Brightness4Icon from "@mui/icons-material/Brightness4";
-import Brightness7Icon from "@mui/icons-material/Brightness7";
-import logo from "../assets/logo.jpg";
-import ContactForm from "../components/ContactForm";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import logo from "../assets/logo.png";
+import ContactButton from "./ContactButton";
+import { Link as RouterLink, useLocation } from "react-router-dom";
 
-interface NavigationBarProps {
-  toggleTheme: () => void;
+interface NavButtonProps {
+  to: string;
+  primary: string;
+  hasDropdown?: boolean;
+  onMouseEnter?: (event: React.MouseEvent<HTMLElement>) => void;
 }
 
-const NavigationBar: React.FC<NavigationBarProps> = ({ toggleTheme }) => {
-  const [drawerOpen, setDrawerOpen] = React.useState(false);
-  const [showModal, setShowModal] = React.useState(false);
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+const NavButton: React.FC<NavButtonProps> = ({
+  to,
+  primary,
+  hasDropdown,
+  onMouseEnter,
+}) => (
+  <Button
+    component={RouterLink}
+    to={to}
+    sx={{
+      color: "#247B27",
+      fontWeight: "bold",
+      fontSize: "1rem",
+      textTransform: "none",
+      "&:hover": {
+        backgroundColor: "#fffbf1",
+        color: "black",
+      },
+    }}
+    onMouseEnter={hasDropdown ? onMouseEnter : undefined}
+    endIcon={hasDropdown ? <KeyboardArrowDownIcon /> : null}
+  >
+    {primary}
+  </Button>
+);
+
+const NavigationBar: React.FC = () => {
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [servicesAnchorEl, setServicesAnchorEl] = useState<null | HTMLElement>(
+    null
+  );
+  const isMobile = useMediaQuery("(max-width:600px)");
+  const location = useLocation();
+
+  useEffect(() => {
+      if (window) {
+          window.scrollTo(0, 0); // Scroll to top on route change
+      }
+  }, [location.pathname]); // Trigger on pathname change
 
   const toggleDrawer =
     (open: boolean) =>
@@ -51,176 +77,132 @@ const NavigationBar: React.FC<NavigationBarProps> = ({ toggleTheme }) => {
       setDrawerOpen(open);
     };
 
-  const handleShowModal = (): void => {
-    setShowModal(true);
-    setDrawerOpen(false); // Close drawer if it's open
+  const handleServicesHover = (event: React.MouseEvent<HTMLElement>): void => {
+    if (!isMobile) {
+      setServicesAnchorEl(event.currentTarget);
+    }
   };
 
-  const handleCloseModal = (): void => {
-    setShowModal(false);
+  const handleServicesClose = (): void => {
+    setServicesAnchorEl(null);
   };
 
   return (
-    <>
-      <AppBar position="static">
-        <Toolbar
+    <AppBar
+      position="sticky"
+      sx={{ backgroundColor: "#fff", color: "#247B27" }}
+    >
+      <Toolbar sx={{ justifyContent: "space-between" }}>
+        <Typography variant="h4" component="div" sx={{ marginLeft: "10px" }}>
+          <RouterLink to="/" className="navbar-brand">
+            <img
+              src={logo}
+              alt="Logo"
+              className="logo-img"
+              style={{ maxWidth: 350 }}
+            />
+          </RouterLink>
+        </Typography>
+
+        {isMobile ? (
+          <>
+            <IconButton
+              color="inherit"
+              aria-label="menu"
+              onClick={toggleDrawer(true)}
+              edge="end"
+            >
+              <MenuIcon />
+            </IconButton>
+            <Drawer
+              anchor="right"
+              open={drawerOpen}
+              onClose={toggleDrawer(false)}
+            >
+              <Box
+                sx={{
+                  width: 250,
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  paddingTop: "1rem",
+                  marginTop: "28px",
+                }}
+                role="presentation"
+                onClick={toggleDrawer(false)}
+                onKeyDown={toggleDrawer(false)}
+              >
+                <NavButtons onMouseEnter={handleServicesHover} />
+                <ContactButton />
+              </Box>
+            </Drawer>
+          </>
+        ) : (
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              gap: "1.5rem",
+              marginRight: "20px",
+            }}
+          >
+            <NavButtons onMouseEnter={handleServicesHover} />
+            <ContactButton />
+          </Box>
+        )}
+      </Toolbar>
+
+      <Menu
+        anchorEl={servicesAnchorEl}
+        open={Boolean(servicesAnchorEl)}
+        onClose={handleServicesClose}
+        MenuListProps={{ onMouseLeave: handleServicesClose }}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "left",
+        }}
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "left",
+        }}
+      >
+        <MenuItem
+          component={RouterLink}
+          to="/services"
+          onClick={handleServicesClose}
           sx={{
-            backgroundColor: theme.palette.mode === "dark" ? "#333" : "#4caf50",
+            color: "#247B27",
+            fontWeight: "bold",
+            fontSize: "1rem",
+            textTransform: "none",
+            "&:hover": {
+              backgroundColor: "rgba(36, 123, 39, 0.08)",
+            },
           }}
         >
-          <IconButton
-            color="inherit"
-            aria-label="menu"
-            onClick={toggleDrawer(true)}
-            sx={{ display: { xs: "block", sm: "none" } }}
-          >
-            <MenuIcon />
-          </IconButton>
-
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            <RouterLink
-              to="/"
-              style={{
-                textDecoration: "none",
-                color: "inherit",
-                display: "flex",
-                alignItems: "center",
-              }}
-            >
-              <img
-                src={logo}
-                alt="Logo"
-                style={{ maxWidth: 150, marginRight: 10 }}
-              />
-              Greenfield International Technologies
-            </RouterLink>
-          </Typography>
-
-          {!isMobile && (
-            <List sx={{ display: "flex", marginLeft: "auto" }}>
-              <ListItem button component={RouterLink} to="/">
-                <ListItemIcon>
-                  <HomeIcon />
-                </ListItemIcon>
-                <ListItemText primary="Home" />
-              </ListItem>
-              <ListItem button component={RouterLink} to="/about">
-                <ListItemIcon>
-                  <InfoIcon />
-                </ListItemIcon>
-                <ListItemText primary="About" />
-              </ListItem>
-              <ListItem button component={RouterLink} to="/careers">
-                <ListItemIcon>
-                  <WorkIcon />
-                </ListItemIcon>
-                <ListItemText primary="Careers" />
-              </ListItem>
-              <ListItem button component={RouterLink} to="/projects">
-                <ListItemIcon>
-                  <BuildIcon />
-                </ListItemIcon>
-                <ListItemText primary="Projects" />
-              </ListItem>
-              <ListItem button component={RouterLink} to="/clients">
-                <ListItemIcon>
-                  <BusinessIcon />
-                </ListItemIcon>
-                <ListItemText primary="Clients" />
-              </ListItem>
-              <ListItem>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={handleShowModal}
-                  startIcon={<ContactMailIcon />}
-                >
-                  Contact Us
-                </Button>
-              </ListItem>
-              <ListItem>
-                <Switch
-                  checked={theme.palette.mode === "dark"}
-                  onChange={toggleTheme} // Toggle theme function passed as prop
-                  color="default"
-                  icon={<Brightness4Icon />}
-                  checkedIcon={<Brightness7Icon />}
-                />
-              </ListItem>
-            </List>
-          )}
-        </Toolbar>
-      </AppBar>
-
-      <Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer(false)}>
-        <div
-          role="presentation"
-          onClick={toggleDrawer(false)}
-          onKeyDown={toggleDrawer(false)}
-          style={{ width: 250 }}
-        >
-          <img
-            src={logo}
-            alt="Logo"
-            style={{ maxWidth: "100%", padding: "1rem", cursor: "pointer" }}
-          />
-          <List>
-            <ListItem button component={RouterLink} to="/">
-              <ListItemIcon>
-                <HomeIcon />
-              </ListItemIcon>
-              <ListItemText primary="Home" />
-            </ListItem>
-            <ListItem button component={RouterLink} to="/about">
-              <ListItemIcon>
-                <InfoIcon />
-              </ListItemIcon>
-              <ListItemText primary="About" />
-            </ListItem>
-            <ListItem button component={RouterLink} to="/careers">
-              <ListItemIcon>
-                <WorkIcon />
-              </ListItemIcon>
-              <ListItemText primary="Careers" />
-            </ListItem>
-            <ListItem button component={RouterLink} to="/projects">
-              <ListItemIcon>
-                <BuildIcon />
-              </ListItemIcon>
-              <ListItemText primary="Projects" />
-            </ListItem>
-            <ListItem button component={RouterLink} to="/clients">
-              <ListItemIcon>
-                <BusinessIcon />
-              </ListItemIcon>
-              <ListItemText primary="Clients" />
-            </ListItem>
-            <ListItem button onClick={handleShowModal}>
-              <ListItemIcon>
-                <ContactMailIcon />
-              </ListItemIcon>
-              <ListItemText primary="Contact Us" />
-            </ListItem>
-            <ListItem>
-              <Switch
-                checked={theme.palette.mode === "dark"}
-                onChange={toggleTheme}
-                color="default"
-                icon={<Brightness4Icon />}
-                checkedIcon={<Brightness7Icon />}
-              />
-            </ListItem>
-          </List>
-        </div>
-      </Drawer>
-
-      <Modal open={showModal} onClose={handleCloseModal}>
-        <div className="modal-container">
-          <ContactForm handleClose={handleCloseModal} />
-        </div>
-      </Modal>
-    </>
+          Tower Repair and Maintenance
+        </MenuItem>
+        {/* Add other menu items as needed */}
+      </Menu>
+    </AppBar>
   );
 };
+
+const NavButtons: React.FC<{
+  onMouseEnter?: (event: React.MouseEvent<HTMLElement>) => void;
+}> = ({ onMouseEnter }) => (
+  <>
+    <NavButton to="/" primary="Home" />
+    <NavButton to="/about" primary="About" />
+    <NavButton
+      to="/services"
+      primary="Services"
+      hasDropdown
+      onMouseEnter={onMouseEnter}
+    />
+    <NavButton to="/project" primary="Project" />
+    <NavButton to="/careers" primary="Careers" />
+  </>
+);
 
 export default NavigationBar;

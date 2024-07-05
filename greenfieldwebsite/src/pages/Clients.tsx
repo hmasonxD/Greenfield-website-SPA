@@ -1,38 +1,39 @@
 import React from "react";
 import Section from "../components/Section";
-import backgroundImage from "../assets/background.jpg";
-import professionalServicesImage from "../assets/service.jpg";
+import clientImage from "../assets/client.jpg";
+import { Container } from "@mui/material";
 
-const Homepage: React.FC = () => {
-  return (
-    <>
-      <Section
-        title="Greenfield International Technologies"
-        subtitle="We offer a helping hand to firms who are looking for experience and competency from an IT/Telecommunication Company. Greenfield International Technologies Inc provides service and support in Telecommunication space that is becoming more crowded every day with competition."
-        backgroundImage={backgroundImage}
-        buttons={[{ text: "Contact Us", action: "contact" }]}
-      />
+const ClientsPage: React.FC = () => {
+    return (
+        <Container>
+            <Section
+                title="Our Clients"
+                subtitle="Discover some of the reputable clients who trust Greenfield International Technologies Inc for their Telecommunication needs."
+                image={clientImage}
+            />
 
-      <Section
-        title="Professional Services"
-        subtitle="Greenfield International Technologies Inc is a full-service systems integrator with partnerships with a wide variety of technology manufacturers and providers. Proposals are custom designed to match your company’s project needs."
-        additionalContent={[
-          "Greenfield International Technologies Inc consults and provides custom solutions as well as implementation services.",
-          "Greenfield International’s Professional Services Highlights:",
-          "Telecommunications Services.",
-          "Uplifts",
-          "Antenna and Radios Installation",
-          "Cell Site Installation & Commissioning",
-          "Microwave installation",
-          "2 to 4 hours of Emergency Service Response times—or customizable",
-          "Non-Emergency Response – Next Business Day",
-          "Time & Materials Options",
-        ]}
-        image={professionalServicesImage}
-        buttons={[{ text: "About Us", action: "about" }]}
-      />
-    </>
-  );
+            <Section
+                title="Client Testimonials"
+                subtitle="What our clients say about us:"
+                additionalContent={[
+                    "Testimonials from satisfied clients.",
+                    "Hear directly from our clients about their experience with us.",
+                    "Client feedback that demonstrates our commitment to excellence.",
+                ]}
+            />
+
+            <Section
+                title="Partner With Us"
+                subtitle="Partner with Greenfield International Technologies Inc for your Telecommunication projects."
+                additionalContent={[
+                    "Join our esteemed clients who have benefited from our tailored solutions.",
+                    "Explore partnership opportunities with us.",
+                    "Contact us today to discuss how we can support your business needs.",
+                ]}
+                buttons={[{ text: "Contact Us", to: "contact" }]}
+            />
+        </Container>
+    );
 };
 
-export default Homepage;
+export default ClientsPage;
